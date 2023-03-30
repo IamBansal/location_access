@@ -19,14 +19,13 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final _formKey = GlobalKey<FormState>();
-    String _email='';
-    String _password='';
 
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).requestFocus(FocusNode());
       },
-      child: Scaffold(
+      child: SingleChildScrollView(
+      child:Scaffold(
         backgroundColor: Colors.white,
         resizeToAvoidBottomInset: false,
         body: Column(
@@ -59,7 +58,6 @@ class _LoginScreenState extends State<LoginScreen> {
                             return null;
                           },
                           onChanged: (value) {
-                            _email = value;
                           },
                           keyboardType: TextInputType.emailAddress,
                           style: TextStyle(
@@ -87,7 +85,6 @@ class _LoginScreenState extends State<LoginScreen> {
                             return null;
                           },
                           onChanged: (value){
-                            _password = value;
                           },
                           decoration: const InputDecoration(
                               hintText: 'Password',
@@ -153,6 +150,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ],
           ),
       ),
+      )
     );
   }
 }
