@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:location_access/screens/service_provider.dart';
+import 'package:location_access/screens/map_screen.dart';
+import 'package:location_access/services/google_auth_service.dart';
 
 
 // final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -24,7 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
       onTap: () {
         FocusScope.of(context).requestFocus(FocusNode());
       },
-      child: SingleChildScrollView(
+      child: SafeArea(
       child:Scaffold(
         backgroundColor: Colors.white,
         resizeToAvoidBottomInset: false,
@@ -32,8 +33,12 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               Padding(
                 padding:
-                const EdgeInsets.symmetric(vertical: 0, horizontal: 20),
-                child: Text('WELCOME'),
+                const EdgeInsets.only(top: 60, bottom: 20),
+                child: Text('WELCOME',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 25,
+                ),),
               ),
               FaIcon(
                 FontAwesomeIcons.circleUser,
@@ -95,7 +100,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       Padding(
                         padding: const EdgeInsets.only(top: 30),
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => SimpleMapScreen()));
+                          },
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: const Text(
@@ -112,7 +119,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             IconButton(
-                              onPressed: () => AuthService().signInWithGoogle(),
+                              onPressed: ()
+                        {
+                          AuthService().signInWithGoogle();
+                        },
                               icon: FaIcon(
                                 FontAwesomeIcons.google,
                                 size: 50,
