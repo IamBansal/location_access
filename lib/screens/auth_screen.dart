@@ -16,6 +16,17 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
 
+  Future<void> _handleSignIn() async {
+    try {
+      await AuthService().signInWithGoogle();
+      Navigator.push(context, MaterialPageRoute(
+        builder: (context) => handleAuthState(),
+      ),
+      );
+    } catch (error) {
+      print(error);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -121,7 +132,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             IconButton(
                               onPressed: ()
                         {
-                          AuthService().signInWithGoogle();
+                          _handleSignIn();
                         },
                               icon: FaIcon(
                                 FontAwesomeIcons.google,

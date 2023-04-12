@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:location_access/screens/location_screen.dart';
+import 'package:location_access/screens/auth_screen.dart';
 
 
 
@@ -70,12 +70,15 @@ handleAuthState() {
             ),
           );
         }
-        else {
-          return MyLocation();
-        }
+        else
+          {
+            return LoginScreen();
+          }
       }
   );
 }
+
+
 
 class AuthService {
   signInWithGoogle() async {
